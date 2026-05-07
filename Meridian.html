@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Meridian — AI Cost Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Crimson Pro: explicit weights (variable range sometimes fails to apply in dev tools / strict networks) -->
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<!-- Stitch screens also use Newsreader + Manrope -->
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div id="root">
+  <!-- Inline styles so this shows even if styles.css or CSS variables fail -->
+  <div class="meridian-boot-fallback" style="min-height:100vh;display:grid;place-content:center;justify-items:center;gap:14px;padding:32px 24px;text-align:center;max-width:440px;margin:0 auto;background:#0a0b0d;color:#e6e8ec;font-family:'Crimson Pro',Georgia,'Times New Roman',serif">
+    <p style="margin:0;font-size:17px;font-weight:600">Starting Meridian…</p>
+    <p style="margin:0;font-size:13px;line-height:1.55;color:#9097a3">Open this folder with <strong style="color:#e6e8ec">npm start</strong> or <strong style="color:#e6e8ec">Live Server</strong> (not <code style="background:#161922;padding:2px 8px;border-radius:4px;font-size:12px">file://</code>) so JSX and <code style="background:#161922;padding:2px 8px;border-radius:4px;font-size:12px">/node_modules/</code> scripts load.</p>
+  </div>
+</div>
+
+<script>
+function meridianShowBootError(msg) {
+  var r = document.getElementById('root');
+  if (!r || r.getAttribute('data-boot-error') === '1') return;
+  r.setAttribute('data-boot-error', '1');
+  r.innerHTML = '<div style="min-height:100vh;display:grid;place-content:center;padding:24px;background:#0a0b0d;color:#fda4af;font-family:\'Crimson Pro\',Georgia,serif;max-width:520px;margin:0 auto"><p style="margin:0 0 8px;font-weight:600">Meridian could not start</p><p style="margin:0;color:#e6e8ec;font-size:14px;word-break:break-word">' + String(msg || 'unknown') + '</p><p style="margin:16px 0 0;font-size:12px;color:#9097a3">Run <code>npm install</code> and <code>npm start</code>, then open the printed <code>http://localhost:…</code> URL (not Live Server).</p></div>';
+}
+window.addEventListener('error', function (e) {
+  meridianShowBootError(e.message || (e.error && e.error.message) || e);
+});
+</script>
+
+<!-- Served from node_modules (same origin as npm start) — avoids CDN/ad-blocker blank screens -->
+<script src="/node_modules/react/umd/react.development.js"></script>
+<script src="/node_modules/react-dom/umd/react-dom.development.js"></script>
+<script src="/node_modules/@babel/standalone/babel.min.js"></script>
+
+<script type="text/babel" src="data.jsx"></script>
+<script type="text/babel" src="icons.jsx"></script>
+<script type="text/babel" src="charts.jsx"></script>
+<script type="text/babel" src="shell.jsx"></script>
+<script type="text/babel" src="page-overview.jsx"></script>
+<script type="text/babel" src="page-feed.jsx"></script>
+<script type="text/babel" src="page-logs.jsx"></script>
+<script type="text/babel" src="page-agents.jsx"></script>
+<script type="text/babel" src="page-keys.jsx"></script>
+<script type="text/babel" src="page-alerts.jsx"></script>
+<script type="text/babel" src="onboarding.jsx"></script>
+<script type="text/babel" src="app.jsx"></script>
+</body>
+</html>
